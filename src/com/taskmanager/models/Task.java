@@ -1,7 +1,9 @@
 package com.taskmanager.models;
 
+import javax.crypto.spec.PSource;
+
 public class Task {
-    private final String description;
+    private String description;
     private boolean completed;
 
     public Task(String description) {
@@ -13,16 +15,24 @@ public class Task {
         return description;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public boolean isCompleted() {
         return completed;
     }
 
     public void markAsCompleted() {
-        this.completed = true;
+        if (!this.isCompleted()) {
+            this.completed = true;
+        } else {
+            System.out.println("Tarefa já marcada como concluída");
+        }
     }
 
     @Override
     public String toString() {
-        return this.completed ? "[X] " : "[] " + this.description;
+        return this.completed ? "[X] " : "[]  " + this.description;
     }
 }
